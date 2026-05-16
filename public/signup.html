@@ -7,7 +7,7 @@
   <meta name="viewport"
   content="width=device-width, initial-scale=1.0">
 
-  <title>Nutrify.com | Login</title>
+  <title>Nutrify.com | Signup</title>
 
   <link rel="stylesheet" href="style.css">
 
@@ -19,7 +19,7 @@
 
   <div class="overlay"></div>
 
-  <!-- Login Container -->
+  <!-- Signup Container -->
 
   <div class="login-container">
 
@@ -28,18 +28,22 @@
       <!-- Logo -->
 
       <h1 class="logo">
+
         Nutrify<span>.com</span>
+
       </h1>
 
       <!-- Tagline -->
 
       <p class="tagline">
-        Premium Fitness Supplements
+
+        Create Your Account
+
       </p>
 
-      <!-- Login Form -->
+      <!-- Signup Form -->
 
-      <form id="loginForm">
+      <form id="signupForm">
 
         <!-- Email -->
 
@@ -65,30 +69,31 @@
 
         </div>
 
-        <!-- Error Message -->
+        <!-- Message -->
 
-        <p id="error-message"></p>
+        <p id="message"></p>
 
-        <!-- Login Button -->
+        <!-- Signup Button -->
 
-        <button type="submit" class="btn">
+        <button type="submit"
+        class="btn">
 
-          Login
+          Signup
 
         </button>
 
       </form>
 
-      <!-- Signup Link -->
+      <!-- Login Link -->
 
       <p style="text-align:center; margin-top:20px; color:white;">
 
-        Don't have an account?
+        Already have an account?
 
-        <a href="signup.html"
+        <a href="login.html"
         style="color:red; text-decoration:none;">
 
-        Create Account
+        Login
 
         </a>
 
@@ -102,10 +107,10 @@
 
   <script>
 
-    const loginForm =
-    document.getElementById("loginForm");
+    const signupForm =
+    document.getElementById("signupForm");
 
-    loginForm.addEventListener(
+    signupForm.addEventListener(
     "submit",
     async function(event){
 
@@ -117,13 +122,13 @@
       const password =
       document.getElementById("password").value;
 
-      const errorMessage =
-      document.getElementById("error-message");
+      const message =
+      document.getElementById("message");
 
       try {
 
         const response =
-        await fetch("/login", {
+        await fetch("/signup", {
 
           method: "POST",
 
@@ -138,29 +143,40 @@
 
         });
 
-        const data =
-        await response.json();
+        // SAFE JSON HANDLING
+        const data = await response.json();
 
         if(data.success){
 
-          alert("Login Successful!");
+          message.style.color =
+          "lightgreen";
 
-          window.location.href =
-          "home.html";
+          message.innerText =
+          "Signup Successful";
+
+          setTimeout(() => {
+
+            window.location.href =
+            "login.html";
+
+          }, 1500);
 
         }
 
         else{
 
-          errorMessage.innerText =
+          message.style.color =
+          "red";
+
+          message.innerText =
           data.message;
 
         }
 
       } catch (error) {
 
-        errorMessage.innerText =
-        "Server error. Try again.";
+        message.style.color = "red";
+        message.innerText = "Server error. Try again.";
 
       }
 
