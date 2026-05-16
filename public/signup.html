@@ -125,49 +125,58 @@
       const message =
       document.getElementById("message");
 
-      const response =
-      await fetch("/signup", {
+      try {
 
-        method: "POST",
+        const response =
+        await fetch("/signup", {
 
-        headers: {
-          "Content-Type": "application/json"
-        },
+          method: "POST",
 
-        body: JSON.stringify({
-          email,
-          password
-        })
+          headers: {
+            "Content-Type": "application/json"
+          },
 
-      });
+          body: JSON.stringify({
+            email,
+            password
+          })
 
-      const data =
-      await response.json();
+        });
 
-      if(data.success){
+        // SAFE JSON HANDLING
+        const data = await response.json();
 
-        message.style.color =
-        "lightgreen";
+        if(data.success){
 
-        message.innerText =
-        "Signup Successful";
+          message.style.color =
+          "lightgreen";
 
-        setTimeout(() => {
+          message.innerText =
+          "Signup Successful";
 
-          window.location.href =
-          "login.html";
+          setTimeout(() => {
 
-        }, 1500);
+            window.location.href =
+            "login.html";
 
-      }
+          }, 1500);
 
-      else{
+        }
 
-        message.style.color =
-        "red";
+        else{
 
-        message.innerText =
-        data.message;
+          message.style.color =
+          "red";
+
+          message.innerText =
+          data.message;
+
+        }
+
+      } catch (error) {
+
+        message.style.color = "red";
+        message.innerText = "Server error. Try again.";
 
       }
 
