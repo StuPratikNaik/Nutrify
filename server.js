@@ -14,23 +14,29 @@ app.use(cors());
 app.use(express.static("public"));
 
 
-// ✅ FIX: Root route (IMPORTANT)
+// =========================
+// ROOT ROUTE → LOGIN PAGE FIRST
+// =========================
 app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "public", "home.html"));
+  res.sendFile(path.join(__dirname, "public", "login.html"));
 });
 
 
-// MongoDB Connection
+// =========================
+// DATABASE CONNECTION
+// =========================
 mongoose.connect(process.env.MONGO_URI)
 .then(() => {
   console.log("MongoDB Connected");
 })
 .catch((error) => {
-  console.log(error);
+  console.log("MongoDB Error:", error);
 });
 
 
-// User Schema
+// =========================
+// USER MODEL
+// =========================
 const userSchema = new mongoose.Schema({
   email: String,
   password: String
@@ -39,7 +45,9 @@ const userSchema = new mongoose.Schema({
 const User = mongoose.model("User", userSchema);
 
 
+// =========================
 // SIGNUP ROUTE
+// =========================
 app.post("/signup", async (req, res) => {
   const { email, password } = req.body;
 
@@ -68,7 +76,9 @@ app.post("/signup", async (req, res) => {
 });
 
 
+// =========================
 // LOGIN ROUTE
+// =========================
 app.post("/login", async (req, res) => {
   const { email, password } = req.body;
 
@@ -97,7 +107,9 @@ app.post("/login", async (req, res) => {
 });
 
 
-// SERVER
+// =========================
+// START SERVER
+// =========================
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {
