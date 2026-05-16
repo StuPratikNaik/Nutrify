@@ -120,38 +120,47 @@
       const errorMessage =
       document.getElementById("error-message");
 
-      const response =
-      await fetch("/login", {
+      try {
 
-        method: "POST",
+        const response =
+        await fetch("/login", {
 
-        headers: {
-          "Content-Type": "application/json"
-        },
+          method: "POST",
 
-        body: JSON.stringify({
-          email,
-          password
-        })
+          headers: {
+            "Content-Type": "application/json"
+          },
 
-      });
+          body: JSON.stringify({
+            email,
+            password
+          })
 
-      const data =
-      await response.json();
+        });
 
-      if(data.success){
+        const data =
+        await response.json();
 
-        alert("Login Successful!");
+        if(data.success){
 
-        window.location.href =
-        "home.html";
+          alert("Login Successful!");
 
-      }
+          window.location.href =
+          "home.html";
 
-      else{
+        }
+
+        else{
+
+          errorMessage.innerText =
+          data.message;
+
+        }
+
+      } catch (error) {
 
         errorMessage.innerText =
-        data.message;
+        "Server error. Try again.";
 
       }
 
