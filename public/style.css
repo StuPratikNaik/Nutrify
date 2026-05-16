@@ -1,0 +1,491 @@
+/* =========================
+   GLOBAL STYLES
+========================= */
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+html{
+  scroll-behavior: smooth;
+}
+
+body{
+  background: #111;
+  color: #fff;
+}
+
+/* =========================
+   LOGIN PAGE
+========================= */
+
+.login-body{
+  height: 100vh;
+  background: url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=1600&auto=format&fit=crop') no-repeat center center/cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  position: relative;
+}
+
+.overlay{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.7);
+}
+
+.login-container{
+  position: relative;
+  z-index: 2;
+}
+
+.login-card{
+  width: 380px;
+  padding: 40px;
+  border-radius: 20px;
+
+  background: rgba(255,255,255,0.08);
+
+  backdrop-filter: blur(12px);
+
+  border: 1px solid rgba(255,255,255,0.2);
+
+  box-shadow: 0 8px 32px rgba(255,0,0,0.3);
+
+  animation: fadeIn 1s ease;
+}
+
+.logo{
+  text-align: center;
+  font-size: 38px;
+  margin-bottom: 10px;
+}
+
+.logo span{
+  color: red;
+}
+
+.tagline{
+  text-align: center;
+  color: #ddd;
+  margin-bottom: 30px;
+}
+
+.input-box{
+  margin-bottom: 20px;
+}
+
+.input-box input{
+  width: 100%;
+  padding: 14px;
+  border: none;
+  outline: none;
+  border-radius: 10px;
+
+  background: rgba(255,255,255,0.1);
+
+  color: #fff;
+  font-size: 15px;
+}
+
+.input-box input::placeholder{
+  color: #ccc;
+}
+
+.options{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+  font-size: 14px;
+}
+
+.options a{
+  color: #ff4d4d;
+  text-decoration: none;
+}
+
+.btn{
+  display: inline-block;
+  width: 100%;
+  padding: 14px;
+  border: none;
+  border-radius: 12px;
+
+  background: red;
+  color: white;
+
+  font-size: 16px;
+  font-weight: 600;
+
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+
+  transition: 0.4s;
+}
+
+.btn:hover{
+  background: #ff1a1a;
+  transform: translateY(-3px);
+
+  box-shadow: 0 0 20px red;
+}
+
+/* =========================
+   NAVBAR
+========================= */
+
+header{
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.navbar{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 18px 8%;
+
+  background: #0d0d0d;
+  box-shadow: 0 2px 10px rgba(255,0,0,0.2);
+}
+
+.nav-links{
+  display: flex;
+  list-style: none;
+  gap: 25px;
+}
+
+.nav-links a{
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  transition: 0.3s;
+}
+
+.nav-links a:hover{
+  color: red;
+}
+
+/* =========================
+   HERO SECTION
+========================= */
+
+.hero{
+  height: 100vh;
+
+  background:
+  linear-gradient(rgba(0,0,0,0.7),
+  rgba(0,0,0,0.7)),
+
+  url('https://images.unsplash.com/photo-1517838277536-f5f99be501cd?q=80&w=1600&auto=format&fit=crop');
+
+  background-size: cover;
+  background-position: center;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+
+  padding: 20px;
+}
+
+.hero-content h1{
+  font-size: 60px;
+  margin-bottom: 20px;
+}
+
+.hero-content p{
+  font-size: 20px;
+  color: #ddd;
+  margin-bottom: 30px;
+}
+
+/* =========================
+   SUPPLEMENTS SECTION
+========================= */
+
+.supplements{
+  padding: 80px 8%;
+  background: #151515;
+}
+
+.supplements h2{
+  text-align: center;
+  font-size: 42px;
+  margin-bottom: 50px;
+}
+
+.product-grid{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
+  gap: 30px;
+}
+
+.product-card{
+  background: #1f1f1f;
+  border-radius: 20px;
+  overflow: hidden;
+
+  transition: 0.4s;
+
+  box-shadow: 0 4px 20px rgba(255,0,0,0.15);
+}
+
+.product-card:hover{
+  transform: translateY(-10px) scale(1.02);
+
+  box-shadow: 0 0 25px rgba(255,0,0,0.4);
+}
+
+.product-card img{
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+}
+
+.product-card h3{
+  padding: 20px 20px 10px;
+  font-size: 22px;
+}
+
+.product-card p{
+  padding: 0 20px;
+  color: #ccc;
+  font-size: 14px;
+}
+
+.stars{
+  padding: 15px 20px;
+  color: gold;
+  font-size: 18px;
+}
+
+.buy-btn{
+  display: block;
+  margin: 0 20px 20px;
+  text-align: center;
+
+  padding: 12px;
+
+  background: red;
+  color: white;
+  text-decoration: none;
+
+  border-radius: 10px;
+  transition: 0.3s;
+}
+
+.buy-btn:hover{
+  background: #ff1a1a;
+  box-shadow: 0 0 20px red;
+}
+
+/* =========================
+   ABOUT & CONTACT
+========================= */
+
+.about,
+.contact{
+  padding: 80px 8%;
+  text-align: center;
+}
+
+.about h2,
+.contact h2{
+  font-size: 40px;
+  margin-bottom: 20px;
+}
+
+.about p,
+.contact p{
+  max-width: 800px;
+  margin: auto;
+  color: #ccc;
+  line-height: 1.8;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer{
+  background: #0d0d0d;
+  text-align: center;
+  padding: 30px 20px;
+}
+
+.social-icons{
+  margin-bottom: 20px;
+}
+
+.social-icons a{
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 45px;
+  height: 45px;
+
+  margin: 0 10px;
+
+  border-radius: 50%;
+
+  background: #1f1f1f;
+  color: white;
+
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.social-icons a:hover{
+  background: red;
+  transform: translateY(-5px);
+}
+
+.disclaimer{
+  margin-top: 10px;
+  color: #aaa;
+  font-size: 14px;
+}
+
+/* =========================
+   ANIMATIONS
+========================= */
+
+@keyframes fadeIn{
+  from{
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  to{
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =========================
+   RESPONSIVE DESIGN
+========================= */
+
+@media(max-width: 768px){
+
+  .navbar{
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .nav-links{
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .hero-content h1{
+    font-size: 40px;
+  }
+
+  .hero-content p{
+    font-size: 16px;
+  }
+
+  .login-card{
+    width: 90%;
+    padding: 30px;
+  }
+
+  .supplements h2,
+  .about h2,
+  .contact h2{
+    font-size: 32px;
+  }
+
+}
+
+
+/* =========================
+   ERROR MESSAGE
+========================= */
+
+#error-message{
+  color: #ff4d4d;
+  font-size: 14px;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+/* =========================
+   DIVIDER
+========================= */
+
+.divider{
+  text-align: center;
+  margin: 20px 0;
+  color: #bbb;
+  position: relative;
+}
+
+.divider::before,
+.divider::after{
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 40%;
+  height: 1px;
+  background: rgba(255,255,255,0.2);
+}
+
+.divider::before{
+  left: 0;
+}
+
+.divider::after{
+  right: 0;
+}
+
+/* =========================
+   GOOGLE BUTTON
+========================= */
+
+.google-btn{
+  width: 100%;
+  padding: 14px;
+
+  border: none;
+  border-radius: 12px;
+
+  background: white;
+  color: #111;
+
+  font-size: 15px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  transition: 0.3s;
+}
+
+.google-btn:hover{
+  transform: translateY(-3px);
+
+  box-shadow: 0 0 20px rgba(255,255,255,0.4);
+}
+
+.google-btn i{
+  font-size: 18px;
+  color: red;
+}

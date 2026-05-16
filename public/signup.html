@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta name="viewport"
+  content="width=device-width, initial-scale=1.0">
+
+  <title>Nutrify.com | Signup</title>
+
+  <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body class="login-body">
+
+  <!-- Overlay -->
+
+  <div class="overlay"></div>
+
+  <!-- Signup Container -->
+
+  <div class="login-container">
+
+    <div class="login-card">
+
+      <!-- Logo -->
+
+      <h1 class="logo">
+
+        Nutrify<span>.com</span>
+
+      </h1>
+
+      <!-- Tagline -->
+
+      <p class="tagline">
+
+        Create Your Account
+
+      </p>
+
+      <!-- Signup Form -->
+
+      <form id="signupForm">
+
+        <!-- Email -->
+
+        <div class="input-box">
+
+          <input
+          type="email"
+          id="email"
+          placeholder="Enter Email"
+          required>
+
+        </div>
+
+        <!-- Password -->
+
+        <div class="input-box">
+
+          <input
+          type="password"
+          id="password"
+          placeholder="Enter Password"
+          required>
+
+        </div>
+
+        <!-- Message -->
+
+        <p id="message"></p>
+
+        <!-- Signup Button -->
+
+        <button type="submit"
+        class="btn">
+
+          Signup
+
+        </button>
+
+      </form>
+
+      <!-- Login Link -->
+
+      <p style="text-align:center; margin-top:20px; color:white;">
+
+        Already have an account?
+
+        <a href="login.html"
+        style="color:red; text-decoration:none;">
+
+        Login
+
+        </a>
+
+      </p>
+
+    </div>
+
+  </div>
+
+  <!-- JavaScript -->
+
+  <script>
+
+    const signupForm =
+    document.getElementById("signupForm");
+
+    signupForm.addEventListener(
+    "submit",
+    async function(event){
+
+      event.preventDefault();
+
+      const email =
+      document.getElementById("email").value;
+
+      const password =
+      document.getElementById("password").value;
+
+      const message =
+      document.getElementById("message");
+
+      const response =
+      await fetch("http://localhost:5000/signup", {
+
+        method: "POST",
+
+        headers: {
+          "Content-Type": "application/json"
+        },
+
+        body: JSON.stringify({
+          email,
+          password
+        })
+
+      });
+
+      const data =
+      await response.json();
+
+      if(data.success){
+
+        message.style.color =
+        "lightgreen";
+
+        message.innerText =
+        "Signup Successful";
+
+        setTimeout(() => {
+
+          window.location.href =
+          "login.html";
+
+        }, 1500);
+
+      }
+
+      else{
+
+        message.style.color =
+        "red";
+
+        message.innerText =
+        data.message;
+
+      }
+
+    });
+
+  </script>
+
+</body>
+</html>

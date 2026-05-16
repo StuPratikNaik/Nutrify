@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta name="viewport"
+  content="width=device-width, initial-scale=1.0">
+
+  <title>Nutrify.com | Login</title>
+
+  <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body class="login-body">
+
+  <!-- Overlay -->
+
+  <div class="overlay"></div>
+
+  <!-- Login Container -->
+
+  <div class="login-container">
+
+    <div class="login-card">
+
+      <!-- Logo -->
+
+      <h1 class="logo">
+        Nutrify<span>.com</span>
+      </h1>
+
+      <!-- Tagline -->
+
+      <p class="tagline">
+        Premium Fitness Supplements
+      </p>
+
+      <!-- Login Form -->
+
+      <form id="loginForm">
+
+        <!-- Email -->
+
+        <div class="input-box">
+
+          <input
+          type="email"
+          id="email"
+          placeholder="Enter Email"
+          required>
+
+        </div>
+
+        <!-- Password -->
+
+        <div class="input-box">
+
+          <input
+          type="password"
+          id="password"
+          placeholder="Enter Password"
+          required>
+
+        </div>
+
+        <!-- Error Message -->
+
+        <p id="error-message"></p>
+
+        <!-- Login Button -->
+
+        <button type="submit" class="btn">
+
+          Login
+
+        </button>
+
+      </form>
+
+      <!-- Signup Link -->
+
+      <p style="text-align:center; margin-top:20px; color:white;">
+
+        Don't have an account?
+
+        <a href="signup.html"
+        style="color:red; text-decoration:none;">
+
+        Create Account
+
+        </a>
+
+      </p>
+
+    </div>
+
+  </div>
+
+  <!-- JavaScript -->
+
+  <script>
+
+    const loginForm =
+    document.getElementById("loginForm");
+
+    loginForm.addEventListener(
+    "submit",
+    async function(event){
+
+      event.preventDefault();
+
+      const email =
+      document.getElementById("email").value;
+
+      const password =
+      document.getElementById("password").value;
+
+      const errorMessage =
+      document.getElementById("error-message");
+
+      const response =
+      await fetch("http://localhost:5000/login", {
+
+        method: "POST",
+
+        headers: {
+          "Content-Type": "application/json"
+        },
+
+        body: JSON.stringify({
+          email,
+          password
+        })
+
+      });
+
+      const data =
+      await response.json();
+
+      if(data.success){
+
+        alert("Login Successful!");
+
+        window.location.href =
+        "home.html";
+
+      }
+
+      else{
+
+        errorMessage.innerText =
+        data.message;
+
+      }
+
+    });
+
+  </script>
+
+</body>
+</html>
